@@ -11,6 +11,7 @@ Those are the demos which I show during my Introduction to ReactVR talk.
 
 # Where can I see it in action?
 I gave a talk which showcased this example, see it here (in Polish): https://www.youtube.com/watch?v=HCHq-8rQz1Q&
+
 Slides are here: https://docs.google.com/presentation/d/1K_rLhAknJvTucOFc92MSyj2VgqP9FCwTAHheXPxx6Hs/edit?usp=sharing
 
 # Wait, I have questions!
