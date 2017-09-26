@@ -2,21 +2,19 @@ import React from 'react';
 import {
   AppRegistry,
   asset,
-  StyleSheet,
   Pano,
   Text,
   View,
 } from 'react-vr';
 
-export default class GrandParade extends React.Component {
+export default class HelloVR extends React.Component {
   render() {
     return (
       <View>
         <Pano source={asset('chess-world.jpg')}/>
         <Text
           style={{
-            backgroundColor: '#3e3e40',
-            color: '#f8aa00',
+            backgroundColor: '#777879',
             fontSize: 0.8,
             fontWeight: '400',
             layoutOrigin: [0.5, 0.5],
@@ -26,11 +24,11 @@ export default class GrandParade extends React.Component {
             textAlignVertical: 'center',
             transform: [{translate: [0, 0, -3]}],
           }}>
-          Grand Parade
+          hello
         </Text>
       </View>
     );
   }
 };
 
-AppRegistry.registerComponent('GrandParade', () => GrandParade);
+AppRegistry.registerComponent('HelloVR', () => HelloVR);

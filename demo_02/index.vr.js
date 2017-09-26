@@ -10,7 +10,7 @@ import {
   View, 
 } from 'react-vr';
 
-export default class GrandParade extends React.Component {
+export default class PositionDemo extends React.Component {
   render() {
     return (
       <View>
@@ -72,4 +72,4 @@ export default class GrandParade extends React.Component {
   }
 };
 
-AppRegistry.registerComponent('GrandParade', () => GrandParade);
+AppRegistry.registerComponent('PositionDemo', () => PositionDemo);
