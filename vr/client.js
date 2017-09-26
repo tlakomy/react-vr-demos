@@ -11,7 +11,6 @@ function init(bundle, parent, options) {
       SimpleRaycaster // Add SimpleRaycaster to the options
     ],
     cursorVisibility: "auto", // Add cursorVisibility
-    allowCarmelDeeplink: true,
     ...options
   });
   vr.start();

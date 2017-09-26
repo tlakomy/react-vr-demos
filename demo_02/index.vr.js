@@ -3,10 +3,11 @@ import {
   AppRegistry,
   asset,
   Pano,
+  AmbientLight,
   PointLight,
   Model,
   Text,
-  View,
+  View, 
 } from 'react-vr';
 
 export default class GrandParade extends React.Component {
@@ -14,7 +15,14 @@ export default class GrandParade extends React.Component {
     return (
       <View>
         <Pano source={asset('hotel.jpg')}/>
-        <PointLight style={{color:'white', transform:[{translate : [500, 300, 100]}]}} />
+        <AmbientLight intensity={0.3} />
+        <PointLight 
+          intensity={0.3} 
+          style={{
+            color: "white",
+            transform: [{translate: [0, 4, 0.25]}]
+          }}
+        />
         <Model
           style={{
             layoutOrigin: [0.5, 0.5],
@@ -23,7 +31,7 @@ export default class GrandParade extends React.Component {
             ]
           }}
           lit={true}
-          source={{obj:asset('grandparade.obj'), mtl:asset('grandparade.mtl')}}
+          source={{obj:asset('reactvr.obj'), mtl:asset('reactvr.mtl')}}
         />
         <Model
           style={{
@@ -34,7 +42,7 @@ export default class GrandParade extends React.Component {
             ]
           }}
           lit={true}
-          source={{obj:asset('grandparade.obj'), mtl:asset('grandparade.mtl')}}
+          source={{obj:asset('reactvr.obj'), mtl:asset('reactvr.mtl')}}
         />
         <Model
           style={{
@@ -45,7 +53,7 @@ export default class GrandParade extends React.Component {
             ]
           }}
           lit={true}
-          source={{obj:asset('grandparade.obj'), mtl:asset('grandparade.mtl')}}
+          source={{obj:asset('reactvr.obj'), mtl:asset('reactvr.mtl')}}
         />
         <Model
           style={{
@@ -57,7 +65,7 @@ export default class GrandParade extends React.Component {
             ]
           }}
           lit={true}
-          source={{obj:asset('grandparade.obj'), mtl:asset('grandparade.mtl')}}
+          source={{obj:asset('reactvr.obj'), mtl:asset('reactvr.mtl')}}
         />
       </View>
     );
