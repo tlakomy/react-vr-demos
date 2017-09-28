@@ -19,7 +19,7 @@ const textStyles = {
   layoutOrigin: [0.5, 0.5]
 }
 
-export default class GrandParade extends React.Component {
+export default class HelloVR extends React.Component {
   constructor() {
     super();
     this.state = {rotation: 0, lightsOn: false};
@@ -94,4 +94,4 @@ export default class GrandParade extends React.Component {
   }
 };
 
-AppRegistry.registerComponent('GrandParade', () => GrandParade);
+AppRegistry.registerComponent('HelloVR', () => HelloVR);

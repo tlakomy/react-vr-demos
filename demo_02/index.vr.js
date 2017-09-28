@@ -10,7 +10,7 @@ import {
   View, 
 } from 'react-vr';
 
-export default class PositionDemo extends React.Component {
+export default class HelloVR extends React.Component {
   render() {
     return (
       <View>
@@ -72,4 +72,4 @@ export default class PositionDemo extends React.Component {
   }
 };
 
-AppRegistry.registerComponent('PositionDemo', () => PositionDemo);
+AppRegistry.registerComponent('HelloVR', () => HelloVR);
