@@ -6,7 +6,7 @@ import { VRInstance } from "react-vr-web";
 import * as SimpleRaycaster from "simple-raycaster";
 
 function init(bundle, parent, options) {
-  const vr = new VRInstance(bundle, "GrandParade", parent, {
+  const vr = new VRInstance(bundle, "HelloVR", parent, {
     raycasters: [
       SimpleRaycaster // Add SimpleRaycaster to the options
     ],
