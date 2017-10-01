@@ -5,40 +5,24 @@ import {
   Pano,
   Text,
   Model,
+  Prefetch,
   PointLight,
-  LiveEnvCamera,
   VrButton,
-  MediaPlayerState,
   View,
-  VideoPano,
-  VideoControl
+  VideoPano
 } from 'react-vr';
 
-const textStyles = {
-  backgroundColor: '#2B1C34',
-  padding: 0.02,
-  textAlign: 'center',
-  textAlignVertical: 'center',
-  fontSize: 0.8,
-  layoutOrigin: [0.5, 0.5]
-}
 const SPACE = "space";
 const LIGHTS_ON = "lightsOn";
 const HOUNDS = "hounds";
-const AUDIENCE = "audience";
 
 export default class HelloVR extends React.Component {
   constructor() {
     super();
     this.state = {
       rotation: 0,
-      playerState: new MediaPlayerState({autoPlay: true, muted: true}),
       currentScene: SPACE
     };
-    navigator.mediaDevices.enumerateDevices()
-    .then(function(devices) {
-      console.log(devices);
-    });
     this.lastUpdate = Date.now();
     this.rotate = this.rotate.bind(this);
   }
@@ -67,9 +51,6 @@ export default class HelloVR extends React.Component {
       case LIGHTS_ON:
         this.setState({currentScene: HOUNDS});
         break;
-      case HOUNDS:
-        this.setState({currentScene: AUDIENCE});
-        break;
     }
   }
 
@@ -83,10 +64,7 @@ export default class HelloVR extends React.Component {
         backGroundView = <Pano source={asset('hills.jpg')} />;
         break;
       case HOUNDS:
-        backGroundView = <VideoPano source={asset('puppies.mp4')} muted={true} playerState={this.state.playerState} />;
-        break;
-      case AUDIENCE:
-        backGroundView = <LiveEnvCamera />;
+        backGroundView = <VideoPano source={asset('puppies.mp4')} muted={true} />;
         break;
     }
 
@@ -105,8 +83,6 @@ export default class HelloVR extends React.Component {
       case HOUNDS:
         buttonText = "One more thing..."
         break;
-      case AUDIENCE:
-        buttonText = <LiveEnvCamera />
     }
 
     return buttonText;
@@ -115,16 +91,8 @@ export default class HelloVR extends React.Component {
   render() {
     return (
       <View>
+        <Prefetch key={"hills"} source={asset('hills.jpg')} />
         {this.getBackgroundView()}
-        {this.state.currentScene === HOUNDS && <VideoControl
-          style={{
-            height: 0.2,
-            width: 4,
-            layoutOrigin: [0.5, 0.5, 0],
-            transform: [{translate: [0, 0, -4]}],
-          }}
-          playerState={this.state.playerState}
-        />}
         <View>
             <PointLight style={{color:'white', transform:[{translate : [50, 100, 1000]}]}} />
             {(this.state.currentScene === SPACE || this.state.currentScene === LIGHTS_ON) &&
@@ -143,10 +111,10 @@ export default class HelloVR extends React.Component {
               source={{obj:asset('earth.obj'), mtl:asset('earth.mtl')}}
             />
           }
-          {this.state.currentScene !== AUDIENCE ?
-            <VrButton
+          <VrButton
             style={{width: 2}}
-            onClick={this.handleClick.bind(this)}>
+            onClick={this.handleClick.bind(this)}
+          >
             <Text
               style={{
                 backgroundColor: this.state.currentScene === LIGHTS_ON ? 'red' : 'darkblue',
@@ -161,22 +129,7 @@ export default class HelloVR extends React.Component {
             >
               {this.getButtonText()}
             </Text>
-          </VrButton> : 
-          <Text
-            style={{
-              backgroundColor: '#2483CB',
-              fontSize: 0.3,
-              fontWeight: '400',
-              layoutOrigin: [0.5, 0.5],
-              paddingLeft: 0.2,
-              paddingRight: 0.2,
-              textAlign: 'center',
-              textAlignVertical: 'center',
-              transform: [{translate: [0, 0, -3]}],
-            }}>
-            React Day Verona 2017!
-          </Text>
-        }
+          </VrButton> 
         </View>
       </View>
     );
