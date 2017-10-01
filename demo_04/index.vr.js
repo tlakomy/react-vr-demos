@@ -117,7 +117,7 @@ export default class HelloVR extends React.Component {
           >
             <Text
               style={{
-                backgroundColor: this.state.currentScene === LIGHTS_ON ? 'red' : 'darkblue',
+                backgroundColor: this.state.currentScene === LIGHTS_ON ? 'red' : '#1C77B9',
                 textAlign: 'center',
                 textAlignVertical: 'center',
                 fontSize: 0.4,
