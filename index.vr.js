@@ -8,8 +8,10 @@ import {
   PointLight,
   LiveEnvCamera,
   VrButton,
+  MediaPlayerState,
   View,
-  VideoPano
+  VideoPano,
+  VideoControl
 } from 'react-vr';
 
 const textStyles = {
@@ -30,6 +32,7 @@ export default class HelloVR extends React.Component {
     super();
     this.state = {
       rotation: 0,
+      playerState: new MediaPlayerState({autoPlay: true, muted: true}),
       currentScene: SPACE
     };
     this.lastUpdate = Date.now();
@@ -76,7 +79,7 @@ export default class HelloVR extends React.Component {
         backGroundView = <Pano source={asset('hills.jpg')} />;
         break;
       case HOUNDS:
-        backGroundView = <VideoPano source={asset('puppies.mp4')} muted={true} />;
+        backGroundView = <VideoPano source={asset('puppies.mp4')} muted={true} playerState={this.state.playerState} />;
         break;
       case AUDIENCE:
         backGroundView = <LiveEnvCamera />;
@@ -109,6 +112,15 @@ export default class HelloVR extends React.Component {
     return (
       <View>
         {this.getBackgroundView()}
+        {this.state.currentScene === HOUNDS && <VideoControl
+          style={{
+            height: 0.2,
+            width: 4,
+            layoutOrigin: [0.5, 0.5, 0],
+            transform: [{translate: [0, 0, -4]}],
+          }}
+          playerState={this.state.playerState}
+        />}
         <View>
             <PointLight style={{color:'white', transform:[{translate : [50, 100, 1000]}]}} />
             {(this.state.currentScene === SPACE || this.state.currentScene === LIGHTS_ON) &&
