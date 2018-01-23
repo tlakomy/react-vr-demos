@@ -1,97 +1,63 @@
+'use strict';
+
 import React from 'react';
-import {
-  AppRegistry,
-  asset,
-  Pano,
-  Text,
-  Model,
-  PointLight,
-  VrButton,
-  View,
-} from 'react-vr';
+import {AppRegistry, asset, CylindricalPanel, VrButton, Pano, Text, Image, View} from 'react-vr';
 
-const textStyles = {
-  backgroundColor: '#2B1C34',
-  padding: 0.02,
-  textAlign: 'center',
-  textAlignVertical: 'center',
-  fontSize: 0.8,
-  layoutOrigin: [0.5, 0.5]
-}
+const panelHeight = 344;
+const elementWidth = 260;
 
-export default class HelloVR extends React.Component {
-  constructor() {
-    super();
-    this.state = {rotation: 0, lightsOn: false};
-    this.lastUpdate = Date.now();
-    this.rotate = this.rotate.bind(this);
-  }
+const profilePhotos = [
+  'alexander_gerasimov.png',
+  'alexey_migutsky.png',
+  'andrei_vouchanka.png',
+  'anna_selezniova.png',
+  'asim_hussain.png',
+  'tomasz_lakomy.png',
+  'egor_malkevich.png',
+  'ilja_satchok.png',
+  'ivan_jovanovic.png',
+  'konstantin_krivlenia.png',
+  'marek_piasecki.png',
+  'martin_splitt.png',
+  'vasiliy_vanchuk.png'
+];
 
-  rotate() {
-    const now = Date.now();
-    const delta = now - this.lastUpdate;
-    this.lastUpdate = now;
-
-    this.setState({rotation: this.state.rotation + delta / 20});
-    this.frameHandle = requestAnimationFrame(this.rotate);
-  }
-
-  stopRotation() {
-    if (this.frameHandle) {
-      cancelAnimationFrame(this.frameHandle);
-      this.frameHandle = null;
-    }
-  }
-
-  switchLights() {
-    this.setState({
-      lightsOn: !this.state.lightsOn
-    });
+class HelloVR extends React.Component {
+  createSpeakerPhotos() {
+    return profilePhotos.map((photo) => (
+        <View style={{ margin: 20, backgroundColor: '#FF7AFB'}}>
+          <Image
+            style={{
+              borderRadius: 20,
+              borderWidth: 5,
+              width: elementWidth,
+              height: panelHeight,
+            }}
+            source={asset(`profilePics/${photo}`)}
+          />
+        </View>
+    ));
   }
 
   render() {
     return (
       <View>
-        <Pano source={
-          this.state.lightsOn ?
-          asset('hills.jpg') :
-          asset('stars.png')}
-        />
-        <PointLight style={{color:'white', transform:[{translate : [50, 100, 1000]}]}} />
-        <Model
-          style={{
-            transform: [
-            {translate: [0, 0, -70]},
-            {scale: 0.06 },
-            {rotateY : this.state.rotation},
-            {rotateX: 20},
-            {rotateZ: -10} ],
-          }}
-          onEnter={this.rotate.bind(this)}
-          onExit={this.stopRotation.bind(this)}
-          lit={true}
-          source={{obj:asset('earth.obj'), mtl:asset('earth.mtl')}}
-        />
-        <VrButton
-          style={{width: 2}}
-          onClick={this.switchLights.bind(this)}>
-          <Text
-            style={
-              {backgroundColor: 'darkblue',
-              textAlign: 'center',
-              textAlignVertical: 'center',
-              fontSize: 0.4,
-              layoutOrigin: [0.5, 0.5],
-              transform: [
-                {translate: [2.5, 0, -3]}
-              ]}}
+      <Pano source={asset('blue.png')} />
+      <CylindricalPanel layer={{width: 4096, height: panelHeight + 50, radius: 10}} style={{position: 'absolute'}}>
+          <View
+            style={{
+              opacity: 1,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           >
-            Switch lights
-          </Text>
-        </VrButton>
-      </View>
+          {this.createSpeakerPhotos()}
+        </View>
+      </CylindricalPanel>
+    </View>
     );
   }
-};
+}
 
 AppRegistry.registerComponent('HelloVR', () => HelloVR);

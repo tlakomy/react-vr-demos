@@ -14,7 +14,7 @@ export default class HelloVR extends React.Component {
         <Pano source={asset('chess-world.jpg')}/>
         <Text
           style={{
-            backgroundColor: '#1C77B9',
+            backgroundColor: '#38DBFF',
             fontSize: 0.8,
             fontWeight: '400',
             layoutOrigin: [0.5, 0.5],
@@ -24,7 +24,7 @@ export default class HelloVR extends React.Component {
             textAlignVertical: 'center',
             transform: [{translate: [0, 0, -3]}],
           }}>
-          Hello Verona!
+          Hello Minsk!
         </Text>
       </View>
     );
