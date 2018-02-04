@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {AppRegistry, Animated, asset, CylindricalPanel, VrButton, Pano, Text, Image, View} from 'react-vr';
+import {AppRegistry, Animated, asset, CylindricalPanel, VrButton, Pano, Text, Image, View, VideoPano} from 'react-vr';
 
 const panelHeight = 344;
 const elementWidth = 260;
@@ -27,7 +27,8 @@ class HelloVR extends React.Component {
     super();
     this.state = {
       hoveredPhoto: 0,
-      activeSpeaker: null
+      activeSpeaker: null,
+      backgroundVideo: false
     };
   }
 
@@ -102,10 +103,35 @@ class HelloVR extends React.Component {
       </Text> : null;
   }
 
+  getChangeBackgroundButton() {
+    return this.state.activeSpeaker ? 
+      <VrButton
+        style={{width: 2}}
+        onClick={() => { this.setState({backgroundVideo: true})} }
+      >
+        <Text
+          style={{
+            backgroundColor: '#F5F64D',
+            color: 'black',
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            fontSize: 0.4,
+            width: 3,
+            layoutOrigin: [0.5, 0.5],
+            transform: [
+              {translate: [5, 0, -3]},
+              {rotateY: -40}
+            ]}}
+        >
+          What's up with the static background?
+        </Text>
+      </VrButton> : null;
+  }
+
   render() {
     return (
       <View>
-      <Pano source={asset('blue.png')} />
+      {this.state.backgroundVideo ? <VideoPano source={asset('puppies.mp4')} muted={true} /> : <Pano source={asset('blue.png')} />}
       <Text
         style={{
           backgroundColor: '#38DBFF',
@@ -116,7 +142,7 @@ class HelloVR extends React.Component {
           paddingRight: 0.2,
           textAlign: 'center',
           textAlignVertical: 'center',
-          transform: [{translate: [0, 2.5, -3]}],
+          transform: [{translate: [0, 2, -3]}],
         }}>
         Speakers
       </Text>
@@ -136,6 +162,7 @@ class HelloVR extends React.Component {
         </View>
       </CylindricalPanel>
       {this.getSpeakerBio()}
+      {this.getChangeBackgroundButton()}
     </View>
     );
   }
