@@ -10,9 +10,9 @@ Those are the demos which I show during my Introduction to ReactVR talk.
 4. Go to `http:/localhost:8081/vr/` in your favorite browser
 
 # Where can I see it in action?
-I gave a talk which showcased this example, see it here (in Polish): https://www.youtube.com/watch?v=HCHq-8rQz1Q&
+I gave a talk at React.js Day Veronawhich showcased this example, see it here: https://vimeo.com/240623890
 
-Slides are here: https://docs.google.com/presentation/d/1K_rLhAknJvTucOFc92MSyj2VgqP9FCwTAHheXPxx6Hs/edit?usp=sharing
+Slides are here: https://tlakomy.github.io/react-vr
 
 # Wait, I have questions!
 In that case, feel free to contact me either on github, or on my twitter: @tlakomy :)
